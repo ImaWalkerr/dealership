@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from dealer.models import *
+
+
+admin.site.register(Dealer)
+admin.site.register(DealerPrice)
+admin.site.register(DealerSalesHistory)
