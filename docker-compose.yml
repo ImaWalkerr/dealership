@@ -1,0 +1,25 @@
+version: '3'
+services:
+  postgres_database:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env_docker
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/dilership/
+    ports:
+      - "8000:8080"
+    env_file:
+      - ./.env_docker
+    depends_on:
+      - postgres_database
+
+volumes:
+  postgres_data:
