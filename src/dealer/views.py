@@ -3,7 +3,8 @@ from rest_framework import viewsets
 
 from core.custom_filter import CustomSearchFilter
 from core.permissions import IsAdminOrReadOnly
-from .serializers import *
+from .models import Dealer, DealerGeneral
+from .serializers import DealerSerializer, DealerGeneralSerializer
 
 
 class DealerFilter(filters.FilterSet):
@@ -14,7 +15,7 @@ class DealerFilter(filters.FilterSet):
 
     class Meta:
         model = Dealer
-        fields = ['name', 'founding_date', 'rating', 'cars_count']
+        fields = ('name', 'founding_date', 'rating', 'cars_count')
 
 
 class DealerViewSet(viewsets.ModelViewSet):
@@ -23,7 +24,7 @@ class DealerViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (CustomSearchFilter, filters.DjangoFilterBackend,)
     filterset_class = DealerFilter
-    ordering_fields = ['name']
+    ordering_fields = ('name',)
 
 
 class DealerGeneralViewSet(viewsets.ModelViewSet):

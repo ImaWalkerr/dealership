@@ -2,7 +2,8 @@ from django_filters import rest_framework as filters
 from rest_framework import viewsets
 
 from core.permissions import IsAdminOrReadOnly
-from .serializers import *
+from .models import Customer, CustomerCar
+from .serializers import CustomerSerializer, CustomerCarSerializer
 
 
 class CustomerFilter(filters.FilterSet):
@@ -13,7 +14,7 @@ class CustomerFilter(filters.FilterSet):
 
     class Meta:
         model = Customer
-        fields = ['first_name', 'last_name', 'balance']
+        fields = ('first_name', 'last_name', 'balance')
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
@@ -22,7 +23,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = CustomerFilter
-    ordering_fields = ['last_name']
+    ordering_fields = ('last_name',)
 
 
 class CustomerCarViewSet(viewsets.ModelViewSet):

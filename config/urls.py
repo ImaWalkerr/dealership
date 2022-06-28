@@ -20,10 +20,8 @@ from django.conf.urls.static import static
 from rest_framework import permissions, routers
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from car_dealership.urls import router as dealership_router
-from customer.urls import router as customer_router
-from dealer.urls import router as dealer_router
 
+from routers import router
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -38,10 +36,6 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,)
 )
 
-router = routers.DefaultRouter()
-router.registry.extend(dealership_router.registry)
-router.registry.extend(customer_router.registry)
-router.registry.extend(dealer_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

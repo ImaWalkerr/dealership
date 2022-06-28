@@ -3,7 +3,9 @@ from rest_framework import viewsets
 
 from core.custom_filter import CustomSearchFilter
 from core.permissions import IsAdminOrReadOnly
-from .serializers import *
+from .models import Car, CarInfo
+from .serializers import CarDealerShip, CarDealerShipSerializer, DealerShipGeneral, DealerShipGeneralSerializer, \
+    CarSerializer, CarInfoSerializer
 
 
 class CarDealerShipFilter(filters.FilterSet):
@@ -14,7 +16,7 @@ class CarDealerShipFilter(filters.FilterSet):
 
     class Meta:
         model = CarDealerShip
-        fields = ['name', 'country', 'balance']
+        fields = ('name', 'country', 'balance')
 
 
 class CarDealerShipViewSet(viewsets.ModelViewSet):
@@ -23,7 +25,7 @@ class CarDealerShipViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (CustomSearchFilter, filters.DjangoFilterBackend,)
     filterset_class = CarDealerShipFilter
-    ordering_fields = ['name']
+    ordering_fields = ('name',)
 
 
 class DealerShipGeneralViewSet(viewsets.ModelViewSet):
@@ -37,7 +39,7 @@ class CarFilter(filters.FilterSet):
 
     class Meta:
         model = Car
-        fields = ['car_model']
+        fields = ('car_model',)
 
 
 class CarViewSet(viewsets.ModelViewSet):
@@ -46,11 +48,11 @@ class CarViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = CarFilter
-    ordering_fields = ['car_model']
+    ordering_fields = ('car_model',)
 
 
 class CarInfoViewSet(viewsets.ModelViewSet):
     queryset = CarInfo.objects.all()
     serializer_class = CarInfoSerializer
     permission_classes = (IsAdminOrReadOnly,)
-    ordering_fields = ['car_brand']
+    ordering_fields = ('car_brand',)
