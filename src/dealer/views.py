@@ -3,19 +3,9 @@ from rest_framework import viewsets
 
 from core.custom_filter import CustomSearchFilter
 from core.permissions import IsAdminOrReadOnly
-from .models import Dealer, DealerGeneral
-from .serializers import DealerSerializer, DealerGeneralSerializer
-
-
-class DealerFilter(filters.FilterSet):
-    name = filters.AllValuesFilter(field_name='name')
-    founding_date = filters.DateFromToRangeFilter()
-    rating = filters.RangeFilter()
-    cars_count = filters.RangeFilter()
-
-    class Meta:
-        model = Dealer
-        fields = ('name', 'founding_date', 'rating', 'cars_count')
+from src.dealer.filters import DealerFilter
+from src.dealer.models import Dealer, DealerGeneral
+from src.dealer.serializers import DealerSerializer, DealerGeneralSerializer
 
 
 class DealerViewSet(viewsets.ModelViewSet):

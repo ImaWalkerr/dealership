@@ -5,7 +5,13 @@ from django_countries import Countries
 from djmoney.models.fields import MoneyField
 
 from core.abstract_field import BaseModel
-from core.enum import *
+from core.enum import (
+    CarColor,
+    CarInteriorColor,
+    CarBodyType,
+    CarEngineType,
+    CarGearbox,
+)
 
 
 class G8Countries(Countries):

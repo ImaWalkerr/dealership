@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from car_dealership.models import *
+from src.car_dealership.models import (
+    CarDealerShip,
+    DealerShipGeneral,
+    Car,
+    CarInfo
+)
 
 
 @admin.register(CarDealerShip)

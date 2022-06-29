@@ -1,22 +1,18 @@
 from django_filters import rest_framework as filters
 from rest_framework import viewsets
 
+from src.car_dealership.filters import CarDealerShipFilter, CarFilter
 from core.custom_filter import CustomSearchFilter
 from core.permissions import IsAdminOrReadOnly
-from .models import Car, CarInfo
-from .serializers import CarDealerShip, CarDealerShipSerializer, DealerShipGeneral, DealerShipGeneralSerializer, \
-    CarSerializer, CarInfoSerializer
-
-
-class CarDealerShipFilter(filters.FilterSet):
-    name = filters.AllValuesFilter(field_name='name')
-    country = filters.AllValuesFilter(field_name='country')
-    min_balance = filters.NumberFilter(field_name='balance', lookup_expr='gte')
-    max_balance = filters.NumberFilter(field_name='balance', lookup_expr='lte')
-
-    class Meta:
-        model = CarDealerShip
-        fields = ('name', 'country', 'balance')
+from src.car_dealership.models import Car, CarInfo
+from src.car_dealership.serializers import (
+    CarDealerShip,
+    CarDealerShipSerializer,
+    DealerShipGeneral,
+    DealerShipGeneralSerializer,
+    CarSerializer,
+    CarInfoSerializer
+)
 
 
 class CarDealerShipViewSet(viewsets.ModelViewSet):
@@ -32,14 +28,6 @@ class DealerShipGeneralViewSet(viewsets.ModelViewSet):
     queryset = DealerShipGeneral.objects.all()
     serializer_class = DealerShipGeneralSerializer
     permission_classes = (IsAdminOrReadOnly,)
-
-
-class CarFilter(filters.FilterSet):
-    car_model = filters.AllValuesFilter(field_name='car_model')
-
-    class Meta:
-        model = Car
-        fields = ('car_model',)
 
 
 class CarViewSet(viewsets.ModelViewSet):

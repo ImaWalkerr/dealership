@@ -8,6 +8,19 @@ class BaseClass(enum.Enum):
         return [(item.value, item.name) for item in cls]
 
 
+class CarModels(BaseClass):
+    BMW = 'BWM'
+    FORD = 'Ford'
+    MERCEDES_BENZ = 'Mercedes-Benz'
+    NISSAN = 'Nissan'
+    HONDA = 'Honda'
+    PORSCHE = 'Porsche'
+    SAAB = 'Saab'
+    DODGE = 'Dodge'
+    PONTIAC = 'Pontiac'
+    CHEVROLET = 'Chevrolet'
+
+
 class CarGearbox(BaseClass):
     AUTOMATIC = 'automatic'
     SEMI_AUTOMATIC = 'semi-automatic'

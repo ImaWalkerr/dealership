@@ -1,6 +1,11 @@
 from rest_framework import serializers
 
-from car_dealership.models import CarDealerShip, DealerShipGeneral, Car, CarInfo
+from src.car_dealership.models import (
+    CarDealerShip,
+    DealerShipGeneral,
+    Car,
+    CarInfo
+)
 
 
 class CarDealerShipSerializer(serializers.ModelSerializer):
@@ -8,7 +13,7 @@ class CarDealerShipSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CarDealerShip
-        fields = ('name', 'country', 'balance', 'cars_list')
+        fields = ('name', 'country', 'balance', 'cars_list',)
 
 
 class DealerShipGeneralSerializer(serializers.ModelSerializer):
@@ -18,7 +23,7 @@ class DealerShipGeneralSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DealerShipGeneral
-        fields = ('dealership', 'car', 'customer')
+        fields = ('dealership', 'car', 'customer',)
 
 
 class CarInfoSerializer(serializers.ModelSerializer):
@@ -33,4 +38,4 @@ class CarSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ('car_model', 'car_info', 'car_dealer')
+        fields = ('car_model', 'car_info', 'car_dealer',)
