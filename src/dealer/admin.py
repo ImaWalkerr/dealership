@@ -10,7 +10,7 @@ class DealerAdmin(admin.ModelAdmin):
             'fields': ('name', 'founding_date', 'rating',)
         }),
         ('Other', {
-            'fields': ('cars_count', 'customer_count',)
+            'fields': ('cars_count',)
         }),
     )
 

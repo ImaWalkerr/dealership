@@ -15,6 +15,7 @@ class CustomerCarSerializer(serializers.ModelSerializer):
     customer = serializers.RelatedField(read_only=True, allow_null=True)
     car = serializers.RelatedField(read_only=True, allow_null=True)
     car_dealership = serializers.RelatedField(read_only=True, allow_null=True)
+    car_features = serializers.JSONField()
 
     class Meta:
         model = CustomerCar

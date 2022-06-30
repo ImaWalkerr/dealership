@@ -34,6 +34,7 @@ class CarDealerShip(BaseModel):
         db_table = 'dealership'
         verbose_name = 'Dealership'
         verbose_name_plural = 'Dealerships'
+        ordering = ['id']
 
 
 class DealerShipGeneral(BaseModel):
@@ -53,6 +54,7 @@ class DealerShipGeneral(BaseModel):
         db_table = 'dealership_general'
         verbose_name = 'Dealership general'
         verbose_name_plural = 'Dealerships general'
+        ordering = ['id']
 
 
 class Car(BaseModel):
@@ -69,6 +71,7 @@ class Car(BaseModel):
         db_table = 'cars'
         verbose_name = 'Car'
         verbose_name_plural = 'Cars'
+        ordering = ['id']
 
 
 class CarInfo(BaseModel):
@@ -106,3 +109,4 @@ class CarInfo(BaseModel):
         db_table = 'cars_information'
         verbose_name = 'Car Information'
         verbose_name_plural = 'Cars Information'
+        ordering = ['id']

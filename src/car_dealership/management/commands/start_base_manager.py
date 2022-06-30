@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
 
-from car_dealership.managers import base_manager
+from src.car_dealership.managers.base_manager import BaseManager, start
 
 
 class Command(BaseCommand):
     """Start base_manager script"""
     def handle(self, *args, **options):
-        create_info = base_manager.start()
+        create_info = start.handle()
         return "Script successfully complete"

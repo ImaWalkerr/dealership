@@ -6,7 +6,7 @@ from core.abstract_field import BaseModel
 
 class Dealer(BaseModel):
     name = models.CharField(max_length=255, verbose_name='Dealer name')
-    founding_date = models.DateField(default=None, blank=True, verbose_name='Dealer founding date')
+    founding_date = models.CharField(max_length=255, blank=True, verbose_name='Dealer founding date')
     rating = models.PositiveIntegerField(default=None, blank=True, verbose_name='Dealer rating')
     cars_count = models.PositiveIntegerField(default=None, blank=True, verbose_name='Dealer cars')
     customers_count = models.ManyToManyField(
@@ -24,6 +24,7 @@ class Dealer(BaseModel):
         db_table = 'dealer'
         verbose_name = 'Dealer'
         verbose_name_plural = 'Dealers'
+        ordering = ['id']
 
 
 class DealerGeneral(BaseModel):
@@ -46,3 +47,4 @@ class DealerGeneral(BaseModel):
         db_table = 'dealer_general'
         verbose_name = 'Dealer general'
         verbose_name_plural = 'Dealers general'
+        ordering = ['id']

@@ -23,21 +23,22 @@ class Customer(AbstractUser):
         db_table = 'customer'
         verbose_name = 'Customer'
         verbose_name_plural = 'Customers'
+        ordering = ['id']
 
 
 class CustomerCar(BaseModel):
     customer = models.ForeignKey(
         to='customer.Customer', on_delete=models.SET_NULL, null=True, verbose_name='Customer',
-        related_name='customer_offer'
+        related_name='customer'
     )
     car = models.ForeignKey(
         to='car_dealership.Car', on_delete=models.SET_NULL, null=True, verbose_name='Car for action',
-        related_name='car_for_action'
+        related_name='car'
     )
-    car_features = models.JSONField(verbose_name='Car features')
+    car_features = models.JSONField(null=True, blank=True, verbose_name='Car features')
     car_dealership = models.ForeignKey(
         to='car_dealership.CarDealerShip', on_delete=models.SET_NULL, null=True, verbose_name='Car Dealership action',
-        related_name='car_dealership_action'
+        related_name='car_dealership'
     )
     discount = models.PositiveIntegerField(default=None, blank=True, null=True, verbose_name='Action discount for car')
     price = MoneyField(
@@ -52,3 +53,4 @@ class CustomerCar(BaseModel):
         db_table = 'customer_offer'
         verbose_name = 'Customer Offer'
         verbose_name_plural = 'Customers Offers'
+        ordering = ['id']
