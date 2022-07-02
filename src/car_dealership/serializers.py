@@ -4,7 +4,6 @@ from src.car_dealership.models import (
     CarDealerShip,
     DealerShipGeneral,
     Car,
-    CarInfo
 )
 
 
@@ -26,16 +25,9 @@ class DealerShipGeneralSerializer(serializers.ModelSerializer):
         fields = ('dealership', 'car', 'customer',)
 
 
-class CarInfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CarInfo
-        fields = '__all__'
-
-
 class CarSerializer(serializers.ModelSerializer):
-    car_info = CarInfoSerializer(many=True, read_only=True)
     car_dealer = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Car
-        fields = ('car_model', 'car_info', 'car_dealer',)
+        fields = '__all__'

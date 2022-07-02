@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from src.car_dealership.managers.base_manager import BaseManager, start
+from src.car_dealership.managers.base_manager import start
 
 
 class Command(BaseCommand):

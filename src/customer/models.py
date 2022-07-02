@@ -8,7 +8,7 @@ from core.abstract_field import BaseModel
 
 def get_default_features():
     return {
-        'car_brand': 'BMW',
+        'car_model': 'BMW',
         'car_year': 2000,
         'car_color': 'YELLOW',
         'car_interior_color': 'BROWN',

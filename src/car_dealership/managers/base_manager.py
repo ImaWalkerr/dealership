@@ -6,7 +6,6 @@ import string
 from core.dumps import random_choices
 from src.car_dealership.models import (
     Car,
-    CarInfo,
     CarDealerShip,
     DealerShipGeneral,
 )
@@ -55,7 +54,7 @@ class BaseManager:
                     'is_active': True,
                     'balance': random.randint(self.value_min, 10000),
                     'car_features': {
-                        'car_brand': random_choices.random_car_model(),
+                        'car_model': random_choices.random_car_model(),
                         'car_year': random.randint(1900, 2022),
                         'car_color': random_choices.random_car_color(),
                         'car_interior_color': random_choices.random_car_interior_color(),
@@ -74,10 +73,10 @@ class BaseManager:
     def create_car(self):
         for tick in range(1, self.value_max):
             logging.info(f'Creating car #{tick}')
-            CarInfo.objects.update_or_create(
+            Car.objects.update_or_create(
                 id=tick,
                 defaults={
-                    'car_brand': start.__generate_random_string(),
+                    'car_model': random_choices.random_car_model(),
                     'car_year': random.randint(1900, 2022),
                     'car_color': random_choices.random_car_color(),
                     'car_interior_color': random_choices.random_car_interior_color(),
@@ -88,14 +87,8 @@ class BaseManager:
                     'car_gearbox': random_choices.random_car_engine_type(),
                     'number_of_doors': random.randint(self.value_min, 5),
                     'VIN': start.__generate_crypt_string(),
-                    'electric_car': False
-                }
-            )
-            car = Car.objects.update_or_create(
-                id=tick,
-                defaults={
-                    'car_model': random_choices.random_car_model(),
-                    'car_info_id': tick
+                    'electric_car': False,
+                    'car_dealer_id': random.randint(self.value_min_id, self.value_max_id)
                 }
             )
 
@@ -108,7 +101,8 @@ class BaseManager:
                     'name': start.__generate_random_string(),
                     'founding_date': random.randint(1900, 2022),
                     'rating': random.randint(self.value_min, 100),
-                    'cars_count': random.randint(self.value_min, 100)
+                    'cars_count': random.randint(self.value_min, 100),
+                    'customers_count': random.randint(self.value_min, self.value_max)
                 }
             )
 

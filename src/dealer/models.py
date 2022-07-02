@@ -9,9 +9,7 @@ class Dealer(BaseModel):
     founding_date = models.CharField(max_length=255, blank=True, verbose_name='Dealer founding date')
     rating = models.PositiveIntegerField(default=None, blank=True, verbose_name='Dealer rating')
     cars_count = models.PositiveIntegerField(default=None, blank=True, verbose_name='Dealer cars')
-    customers_count = models.ManyToManyField(
-        to='customer.Customer', verbose_name='Customers count', related_name='customers_count'
-    )
+    customers_count = models.PositiveIntegerField(default=None, blank=True, verbose_name='Dealer customers count')
     car_list_in_sale = models.ManyToManyField(
         to='car_dealership.Car', through='DealerGeneral', verbose_name='Car list in sale',
         related_name='car_list_in_sale'

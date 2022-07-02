@@ -4,7 +4,6 @@ from src.car_dealership.models import (
     CarDealerShip,
     DealerShipGeneral,
     Car,
-    CarInfo
 )
 
 
@@ -41,18 +40,10 @@ class DealerShipGeneralAdmin(admin.ModelAdmin):
 class CarAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Car', {
-            'fields': ('car_model', 'car_info', 'car_dealer')
+            'fields': ('car_model', 'car_dealer')
         }),
-    )
-    list_filter = ('car_model', 'car_dealer')
-    search_fields = ('car_model',)
-
-
-@admin.register(CarInfo)
-class CarInfoAdmin(admin.ModelAdmin):
-    fieldsets = (
         ('Car info block 1', {
-            'fields': ('car_brand', 'car_year', 'car_color', 'car_interior_color')
+            'fields': ('car_year', 'car_color', 'car_interior_color')
         }),
         ('Car info block 2', {
             'fields': ('car_mileage', 'car_body_type', 'car_engine_type', 'car_engine_volume')
@@ -61,7 +52,5 @@ class CarInfoAdmin(admin.ModelAdmin):
             'fields': ('car_gearbox', 'number_of_doors', 'VIN', 'electric_car')
         }),
     )
-    list_display = ('car_brand', 'car_year', 'car_body_type', 'car_engine_type', 'car_gearbox')
-    list_filter = ('car_brand', 'car_year', 'car_body_type', 'car_engine_type', 'car_gearbox', 'electric_car')
-    search_fields = ('car_brand', 'car_year', 'VIN')
-    list_display_links = ('car_brand',)
+    list_filter = ('car_model', 'car_dealer')
+    search_fields = ('car_model',)

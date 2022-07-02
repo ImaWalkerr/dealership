@@ -20,6 +20,37 @@ services:
       - ./.env_docker
     depends_on:
       - postgres_database
+      - redis
+
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A config worker -l INFO
+    volumes:
+      - .:/usr/src/dilership/
+    env_file:
+      - ./.env_docker
+    depends_on:
+      - django
+      - postgres_database
+      - redis
+
+  refresher:
+    build: .
+    command: celery -A config beat -l INFO
+    volumes:
+      - .:/usr/src/dilership/
+    env_file:
+      - ./.env_docker
+    depends_on:
+      - celery
+      - postgres_database
+      - redis
 
 volumes:
   postgres_data:
