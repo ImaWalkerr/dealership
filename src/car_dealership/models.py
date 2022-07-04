@@ -44,7 +44,11 @@ class DealerShipGeneral(BaseModel):
     )
     car = models.ForeignKey('Car', on_delete=models.SET_NULL, null=True, verbose_name='Car', related_name='car_general')
     customer = models.ForeignKey(
-        to='customer.Customer', on_delete=models.SET_NULL, null=True, verbose_name='Customer', related_name='customer_general'
+        to='customer.Customer',
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Customer',
+        related_name='customer_general'
     )
 
     def __str__(self):
@@ -58,28 +62,10 @@ class DealerShipGeneral(BaseModel):
 
 
 class Car(BaseModel):
-    car_model = models.CharField(max_length=255, verbose_name='Car model')
-    car_info = models.ForeignKey(
-        'CarInfo', on_delete=models.CASCADE, verbose_name='Car information', related_name='car_info'
-    )
-    car_dealer = models.ManyToManyField(to='dealer.Dealer', verbose_name='Car dealer', related_name='car_dealer')
-
-    def __str__(self):
-        return f"{self.car_model}"
-
-    class Meta:
-        db_table = 'cars'
-        verbose_name = 'Car'
-        verbose_name_plural = 'Cars'
-        ordering = ['id']
-
-
-class CarInfo(BaseModel):
-
     # for validating US VINs
     vehicle_number_validator = RegexValidator(regex=r'^[A-HJ-NPR-Z0-9]{17}$', message='Invalid Vehicle Number!')
 
-    car_brand = models.CharField(max_length=255, blank=True, verbose_name='Car brand')
+    car_model = models.CharField(max_length=255, verbose_name='Car model')
     car_year = models.PositiveIntegerField(
         default=None, blank=True, validators=[MinValueValidator(1900)], verbose_name='Car year'
     )
@@ -101,12 +87,15 @@ class CarInfo(BaseModel):
         max_length=17, blank=True, validators=[vehicle_number_validator], verbose_name='Car VIN number'
     )
     electric_car = models.BooleanField(default=False, verbose_name='Car type')
+    car_dealer = models.ForeignKey(
+        to='dealer.Dealer', on_delete=models.SET_NULL, null=True, verbose_name='Car dealer', related_name='car_dealer'
+    )
 
     def __str__(self):
-        return f"{self.car_brand}"
+        return f"{self.car_model}"
 
     class Meta:
-        db_table = 'cars_information'
-        verbose_name = 'Car Information'
-        verbose_name_plural = 'Cars Information'
+        db_table = 'cars'
+        verbose_name = 'Car'
+        verbose_name_plural = 'Cars'
         ordering = ['id']

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'djmoney',
     'drf_yasg',
     'debug_toolbar',
+    'django_celery_beat',
 
     'src.car_dealership.apps.CarDealershipConfig',
     'src.customer.apps.CustomerConfig',
@@ -193,3 +194,12 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
+
+# CELERY
+CELERY_BROKER_URL = config('BROKER_URL')
+CELERY_RESULT_BACKEND = config('RESULT_BACKEND')
+CELERY_TIMEZONE = 'Europe/Minsk'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_IMPORTS = ['core.tasks']
