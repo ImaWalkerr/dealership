@@ -11,17 +11,17 @@ app = Celery('config', broker='redis://127.0.0.1:6379/0')
 
 @shared_task
 def buy_car():
-    start_buying = buying_cars_process.buying_cars()
+    buying_cars_process.buying_cars()
     logger.info('Buying cars')
 
 
 @shared_task
 def update_cars_info():
-    update_cars = start.create_car()
+    start.create_car()
     logger.info('Updating cars')
 
 
 @shared_task
 def update_dealer_info():
-    update_dealers = start.create_dealer()
+    start.create_dealer()
     logger.info('Updating dealers')

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import DealerViewSet, DealerGeneralViewSet
+from src.dealer.views import DealerViewSet, DealerGeneralViewSet
 from rest_framework import routers
 
 

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import (
+from src.car_dealership.views import (
     CarDealerShipViewSet,
     DealerShipGeneralViewSet,
     CarViewSet,

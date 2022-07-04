@@ -27,6 +27,7 @@ djangorestframework-simplejwt==5.2.0
 drf-yasg==1.20.0
 flake8==4.0.1
 flower==1.0.0
+gunicorn==20.1.0
 humanize==4.2.3
 idna==3.3
 inflection==0.5.1

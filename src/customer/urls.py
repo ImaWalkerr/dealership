@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CustomerViewSet, CustomerCarViewSet
+from src.customer.views import CustomerViewSet, CustomerCarViewSet
 from rest_framework import routers
 
 

@@ -52,5 +52,15 @@ services:
       - postgres_database
       - redis
 
+  nginx:
+    image: nginx
+    volumes:
+      - ./static:/static
+      - ./nginx/:/etc/nginx/
+    depends_on:
+      - django
+    ports:
+      - "8001:80"
+
 volumes:
   postgres_data:

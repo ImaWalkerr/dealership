@@ -36,4 +36,3 @@ class CarViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = CarFilter
     ordering_fields = ('car_model',)
-

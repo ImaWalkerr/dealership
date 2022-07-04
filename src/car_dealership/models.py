@@ -44,7 +44,11 @@ class DealerShipGeneral(BaseModel):
     )
     car = models.ForeignKey('Car', on_delete=models.SET_NULL, null=True, verbose_name='Car', related_name='car_general')
     customer = models.ForeignKey(
-        to='customer.Customer', on_delete=models.SET_NULL, null=True, verbose_name='Customer', related_name='customer_general'
+        to='customer.Customer',
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Customer',
+        related_name='customer_general'
     )
 
     def __str__(self):

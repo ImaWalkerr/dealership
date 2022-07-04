@@ -1,0 +1,17 @@
+name: Code check
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubunty-latest
+    steps:
+    - name: Lint with flake8
+      run: |
+        flake8

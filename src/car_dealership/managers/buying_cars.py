@@ -34,7 +34,7 @@ class BuyingCars:
                                 dealer_discount = dealer.car_discount
                                 car_price = dealer_price * ((100 - dealer_discount) / 100)
                                 if customer.balance >= car_price:
-                                    sold_car = CustomerCar.objects.create(
+                                    CustomerCar.objects.create(
                                         customer=customer.id,
                                         car=car.id,
                                         car_dealership=dealership.id,
@@ -45,13 +45,13 @@ class BuyingCars:
                                     customer = Customer.objects.update(
                                         balance=customer_new_balance
                                     )
-                                    dealer_history = DealerGeneral.objects.create(
+                                    DealerGeneral.objects.create(
                                         car=car.id,
                                         dealer=dealer.id,
                                         car_price=car_price,
                                         car_discount=dealer_discount
                                     )
-                                    dealership_history = DealerShipGeneral.objects.create(
+                                    DealerShipGeneral.objects.create(
                                         dealership=dealership.id,
                                         car=car.id,
                                         customer=customer.id
