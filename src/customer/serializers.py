@@ -4,7 +4,7 @@ from src.customer.models import Customer, CustomerCar
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-    purchase_history = serializers.RelatedField(read_only=True, allow_null=True)
+    purchase_history = serializers.StringRelatedField()
     car_features = serializers.JSONField()
 
     class Meta:
@@ -13,9 +13,9 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 class CustomerCarSerializer(serializers.ModelSerializer):
-    customer = serializers.RelatedField(read_only=True, allow_null=True)
-    car = serializers.RelatedField(read_only=True, allow_null=True)
-    car_dealership = serializers.RelatedField(read_only=True, allow_null=True)
+    customer = serializers.StringRelatedField()
+    car = serializers.StringRelatedField()
+    car_dealership = serializers.StringRelatedField()
 
     class Meta:
         model = CustomerCar

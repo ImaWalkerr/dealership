@@ -8,7 +8,7 @@ from src.car_dealership.models import (
 
 
 class CarDealerShipSerializer(serializers.ModelSerializer):
-    cars_list = serializers.StringRelatedField(many=True)
+    cars_list = serializers.StringRelatedField()
 
     class Meta:
         model = CarDealerShip
@@ -16,9 +16,9 @@ class CarDealerShipSerializer(serializers.ModelSerializer):
 
 
 class DealerShipGeneralSerializer(serializers.ModelSerializer):
-    dealership = serializers.RelatedField(read_only=True, allow_null=True)
-    car = serializers.RelatedField(read_only=True, allow_null=True)
-    customer = serializers.RelatedField(read_only=True, allow_null=True)
+    dealership = serializers.StringRelatedField()
+    car = serializers.StringRelatedField()
+    customer = serializers.StringRelatedField()
 
     class Meta:
         model = DealerShipGeneral
@@ -26,7 +26,7 @@ class DealerShipGeneralSerializer(serializers.ModelSerializer):
 
 
 class CarSerializer(serializers.ModelSerializer):
-    car_dealer = serializers.StringRelatedField(many=True)
+    car_dealer = serializers.StringRelatedField()
 
     class Meta:
         model = Car

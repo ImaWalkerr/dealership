@@ -52,6 +52,14 @@ services:
       - postgres_database
       - redis
 
+  flower:
+    image: mher/flower:0.9.7
+    command: ['flower', '--broker=redis://redis:6379', '--port=5555']
+    expose:
+      - 5555
+    depends_on:
+      - redis
+
   nginx:
     image: nginx
     volumes:
